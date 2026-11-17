@@ -1,0 +1,347 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mercado Verde</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f6f7f2;
+  color: #202820;
+}
+
+header {
+  background: white;
+  padding: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+header h2 {
+  color: #176b4d;
+  margin: 0;
+}
+
+input, button {
+  padding: 10px;
+  border-radius: 8px;
+  font: inherit;
+}
+
+input {
+  border: 1px solid #ddd;
+}
+
+button {
+  border: none;
+  background: #176b4d;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #104b37;
+}
+
+main {
+  max-width: 1100px;
+  margin: auto;
+  padding: 25px 15px;
+}
+
+.hero {
+  background: #e0efe4;
+  padding: 25px;
+  border-radius: 15px;
+  margin-bottom: 25px;
+}
+
+.filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 15px 0;
+}
+
+.filters button {
+  background: white;
+  color: #176b4d;
+  border: 1px solid #ddd;
+}
+
+.filters button.active {
+  background: #176b4d;
+  color: white;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.product {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  padding-bottom: 15px;
+}
+
+.product img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.product h3, .product p, .product strong {
+  margin: 10px;
+  display: block;
+}
+
+.product p {
+  color: #68736b;
+}
+
+.product button {
+  margin: 0 10px;
+}
+
+.cart {
+  background: white;
+  margin-top: 25px;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.cart-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.cart-item button {
+  margin: 5px;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #68736b;
+}
+
+@media (max-width: 800px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 450px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  header input {
+    width: 100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h2>🌿 Mercado Verde</h2>
+
+  <input id="busca" placeholder="Buscar produtos...">
+
+  <button onclick="mostrarCarrinho()">
+    🛒 Carrinho (<span id="quantidade">0</span>)
+  </button>
+</header>
+
+<main>
+  
+<div class="botoes-navegacao">
+  <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+    ⬆ Voltar ao início
+  </button>
+
+  <button onclick=href='menuu.html'">
+    ☰ Voltar ao menu
+  </button>
+</div>
+
+  <section class="hero">
+    <h1>Boas escolhas começam aqui!</h1>
+    <p>Encontre frutas, bebidas, lanches e produtos para o seu dia a dia.</p>
+  </section>
+
+  <h2>Nossos produtos</h2>
+
+  <div class="filters" id="filtros">
+    <button class="active" data-cat="Todos">Todos</button>
+    <button data-cat="Frutas">Frutas</button>
+    <button data-cat="Bebidas">Bebidas</button>
+    <button data-cat="Lanches">Lanches</button>
+    <button data-cat="Mercearia">Mercearia</button>
+  </div>
+
+  <section class="grid" id="produtos"></section>
+
+  <section class="cart" id="carrinho" hidden>
+    <h2>Meu carrinho</h2>
+    <div id="itens"></div>
+    <h3>Total: <span id="total">R$ 0,00</span></h3>
+    <button onclick="finalizar()">Finalizar pedido</button>
+    <button onclick="limparCarrinho()">Limpar carrinho</button>
+  </section>
+</main>
+
+<footer>Mercado Verde — Qualidade e frescor para você.</footer>
+
+<script>
+const produtos = [
+  {id:1, nome:"Maçã", cat:"Frutas", preco:3.99,
+   img:"https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=500"},
+  {id:2, nome:"Banana", cat:"Frutas", preco:1.49,
+   img:"https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=500"},
+  {id:3, nome:"Laranja", cat:"Frutas", preco:2.29,
+   img:"https://images.unsplash.com/photo-1547514701-42782101795e?w=500"},
+  {id:4, nome:"Morango", cat:"Frutas", preco:8.99,
+   img:"https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=500"},
+  {id:5, nome:"Café", cat:"Mercearia", preco:16.90,
+   img:"https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=500"},
+  {id:6, nome:"Refrigerante", cat:"Bebidas", preco:7.50,
+   img:"https://images.unsplash.com/photo-1629203851122-3726ecdf080e?w=500"},
+  {id:7, nome:"Suco de laranja", cat:"Bebidas", preco:6.49,
+   img:"https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=500"},
+  {id:8, nome:"Biscoito", cat:"Lanches", preco:5.99,
+   img:"https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=500"}
+];
+
+let categoria = "Todos";
+let carrinho = {};
+
+const dinheiro = valor =>
+  valor.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL"
+  });
+
+function mostrarProdutos() {
+  const busca = document.getElementById("busca").value.toLowerCase();
+
+  const lista = produtos.filter(p =>
+    (categoria === "Todos" || p.cat === categoria) &&
+    p.nome.toLowerCase().includes(busca)
+  );
+
+  document.getElementById("produtos").innerHTML =
+    lista.length
+      ? lista.map(p => `
+        <article class="product">
+          <img src="${p.img}" alt="${p.nome}"
+               onerror="this.onerror=null;this.src='https://placehold.co/500x300?text=Produto'">
+          <h3>${p.nome}</h3>
+          <p>${p.cat}</p>
+          <strong>${dinheiro(p.preco)}</strong>
+          <button onclick="adicionar(${p.id})">Adicionar</button>
+        </article>
+      `).join("")
+      : "<p>Nenhum produto encontrado.</p>";
+}
+
+function adicionar(id) {
+  carrinho[id] = (carrinho[id] || 0) + 1;
+  mostrarCarrinho();
+}
+
+function mostrarCarrinho() {
+  const area = document.getElementById("carrinho");
+  area.hidden = false;
+
+  const lista = produtos.filter(p => carrinho[p.id] > 0);
+
+  document.getElementById("quantidade").textContent =
+    Object.values(carrinho).reduce((s, q) => s + q, 0);
+
+  document.getElementById("itens").innerHTML = lista.length
+    ? lista.map(p => `
+      <div class="cart-item">
+        <strong>${p.nome}</strong>
+        <p>${dinheiro(p.preco)} × ${carrinho[p.id]}</p>
+        <button onclick="alterar(${p.id}, -1)">−</button>
+        ${carrinho[p.id]}
+        <button onclick="alterar(${p.id}, 1)">+</button>
+        <button onclick="remover(${p.id})">Remover</button>
+      </div>
+    `).join("")
+    : "<p>Seu carrinho está vazio.</p>";
+
+  const total = lista.reduce(
+    (s, p) => s + p.preco * carrinho[p.id], 0
+  );
+
+  document.getElementById("total").textContent = dinheiro(total);
+}
+
+function alterar(id, valor) {
+  carrinho[id] = (carrinho[id] || 0) + valor;
+  if (carrinho[id] <= 0) delete carrinho[id];
+  mostrarCarrinho();
+}
+
+function remover(id) {
+  delete carrinho[id];
+  mostrarCarrinho();
+}
+
+function limparCarrinho() {
+  carrinho = {};
+  mostrarCarrinho();
+}
+
+function finalizar() {
+  const total = produtos.reduce(
+    (s, p) => s + p.preco * (carrinho[p.id] || 0), 0
+  );
+
+  if (total === 0) {
+    alert("Adicione produtos ao carrinho primeiro.");
+    return;
+  }
+
+  alert("Pedido realizado como demonstração!\nTotal: " + dinheiro(total));
+}
+
+document.getElementById("busca").addEventListener("input", mostrarProdutos);
+
+document.getElementById("filtros").addEventListener("click", e => {
+  if (!e.target.dataset.cat) return;
+
+  categoria = e.target.dataset.cat;
+
+  document.querySelectorAll(".filters button").forEach(b =>
+    b.classList.toggle("active", b === e.target)
+  );
+
+  mostrarProdutos();
+});
+
+mostrarProdutos();
+mostrarCarrinho();
+document.getElementById("carrinho").hidden = true;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            color: #222;
+        }
+
+        header {
+            background-color: #ffffff;
+            padding: 20px 40px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        header p {
+            margin: 5px 0 0;
+            color: #666;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 30px auto;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .card h2 {
+            margin-top: 0;
+            font-size: 20px;
+        }
+
+        .card p {
+            color: #666;
+        }
+
+        .info {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 25px;
+        }
+
+        .info h2 {
+            margin-top: 0;
+        }
+
+        .info ul {
+            padding-left: 20px;
+        }
+
+        .info li {
+            margin: 10px 0;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        button {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            background-color: #333;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 20px;
+            }
+
+            .container {
+                width: 94%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Dashboard</h1>
+        <p>Área principal do usuário</p>
+    </header>
+
+    <main class="container">
+
+        <section class="cards">
+
+            <div class="card">
+                <h2>Compras</h2>
+                <p>Veja a lista de compras cadastrada.</p>
+                <a href="index.html">
+                    <button>Ver compras</button>
+                </a>
+            </div>
+
+            <div class="card">
+                <h2>Produtos</h2>
+                <p>Acesse a página de produtos.</p>
+                <a href="produtos.html">
+                    <button>Ver produtos</button>
+                </a>
+            </div>
+
+            <div class="card">
+                <h2>Cadastro</h2>
+                <p>Informações utilizadas no cadastro do usuário.</p>
+                <a href="login.html">
+                    <button>Cadastro</button>
+                </a>
+            </div>
+
+        </section>
+
+        <section class="info">
+            <h2>Informações do usuário</h2>
+
+            <ul>
+                <li>Nome: </li>
+                <li>CPF: </li>
+                <li>Email: </li>
+                <li>Telefone: </li>
+            </ul>
+        </section>
+
+        <section class="info">
+            <h2>Lista de compras</h2>
+
+            <ul>
+                <li>Maça</li>
+                <li>uva</li>
+                <li>refrigerante</li>
+                <li>banana</li>
+                <li>pao</li>
+            </ul>
+        </section>
+
+        <div class="buttons">
+            <a href="index.html">
+                <button>Ir para Compras</button>
+            </a>
+
+            <a href="produtos.html">
+                <button>Ir para Produtos</button>
+            </a>
+
+            <a href="login.html">
+                <button>Fazer cadrastro</button>
+            </a>
+        </div>
+
+    </main>
+
+</body>
+
+</html>
