@@ -1,83 +1,97 @@
 <!DOCTYPE html>
-
-<html lang="en">
+<html lang="pt-BR">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Compras</title>
-
-<style>
-
-li {color: white;}
-h1 {color: black;}
-
-body {
-
-margin-left: auto;
-margin-right: auto;
-}
-
-body{
-    display: flex;
-    justify-content:center;
-    align-items: center;
-}
-
-body{    
-     background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROebkkX4xGEVlHqdc4jlX8xL_QNoqqvtyJekCJs26dgA&s=10);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    background-attachment: fixed;
-}
-
-.container{
-    text-align: center;
-}
-h1{
-    color: black;
-}
-ul{
-    display: inline-block;
-    text-align: left;
-    color: white;
-    font-size: 20px;
-}
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Início - Mercado Verde</title>
+    <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
 
+    <header>
+        <nav>
+            <h1>Mercado Verde</h1>
 
-<div class="container">
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="produtos.html">Produtos</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="sobre.html">Sobre a loja</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="cadastro.html">Cadastro</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<h1>Lista de Compras </h1>
-<ul>
+    <main>
+      
+        <section class="banner-dividido">
+            <div class="container-grid">
+                
+               
+                <div class="coluna-texto">
+                    <span class="tag-destaque">Frescor todos os dias</span>
+                    <h2>Bem-vindo ao Mercado Verde!</h2>
+                    <p>
+                        Organize suas compras da semana, acompanhe seus gastos no dashboard 
+                        e receba produtos selecionados direto na sua casa.
+                    </p>
 
-<li>Maça</li>
-<li>uva</li>
-<li>refrigerante</li>
-<li>banana</li>
-<li>pao</li>
+                    <div class="grupo-botoes">
+                        <a href="produtos.html" class="btn-primario">Explorar Produtos</a>
+                        <a href="dashboard.html" class="btn-contorno">Acessar Dashboard</a>
+                        <a href="login.html" class="btn-link">Fazer Login &rarr;</a>
+                    </div>
+                </div>
 
-</ul>
+                
+                <div class="coluna-lista">
+                    <div class="bloco-compras">
+                        <div class="bloco-topo">
+                            <h3>Lista Rápida</h3>
+                            <span>5 itens</span>
+                        </div>
+                        
+                        <ul class="checklist">
+                            <li><input type="checkbox" id="item1"><label for="item1">Maçã</label></li>
+                            <li><input type="checkbox" id="item2"><label for="item2">Uva</label></li>
+                            <li><input type="checkbox" id="item3"><label for="item3">Refrigerante</label></li>
+                            <li><input type="checkbox" id="item4"><label for="item4">Banana</label></li>
+                            <li><input type="checkbox" id="item5"><label for="item5">Pão</label></li>
+                        </ul>
 
-<div class="button">
-<a href="produtos.html">
-<button>Ir para a produtos</button>
-</a>
+                        <a href="produtos.html" class="btn-bloco">+ Adicionar mais itens</a>
+                    </div>
+                </div>
 
+            </div>
+        </section>
 
-<a href="dashboard.html">
-<button>Ir para o dashboard</button>
+        
+        <section class="atalhos">
+            <div class="card-atalho">
+                <h4>Catálogo Completo</h4>
+                <p>Veja frutas, verduras e itens de mercearia disponíveis.</p>
+                <a href="produtos.html">Ver catálogo</a>
+            </div>
 
+            <div class="card-atalho">
+                <h4>Controle Financeiro</h4>
+                <p>Acompanhe o resumo das suas compras e estatísticas.</p>
+                <a href="dashboard.html">Abrir painel</a>
+            </div>
 
-<a href="login.html">
-<button> Fazer login </button>
+            <div class="card-atalho">
+                <h4>Minha Conta</h4>
+                <p>Entre ou cadastre-se para salvar suas listas.</p>
+                <a href="cadastro.html">Criar conta</a>
+            </div>
+        </section>
+    </main>
 
-</div>
-</div>
+    <footer>
+        <p>&copy; 2026 Mercado Verde. Todos os direitos reservados.</p>
+    </footer>
+
 </body>
 </html>
